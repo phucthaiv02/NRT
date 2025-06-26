@@ -1,4 +1,3 @@
-import streamlit as st
 import tensorflow as tf
 from tensorflow.keras.layers import Input, MaxPool2D, Bidirectional, Reshape, GRU, Dense
 from layers import ConvBnRelu
@@ -113,7 +112,6 @@ class CRNN(tf.keras.Model):
             batch_texts.append(text)
         return batch_texts
 
-    @st.cache_data(show_spinner=False)
     def predict_one_patch(_self, patch_img):
         image = _self.process_image(patch_img)
         pred_tokens = _self.model.predict(tf.expand_dims(image, axis=0))

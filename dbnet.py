@@ -1,5 +1,4 @@
 import cv2
-import streamlit as st
 import tensorflow as tf
 
 from tensorflow.keras.layers import Input, UpSampling2D, Add, Concatenate, Lambda
@@ -66,7 +65,6 @@ class DBNet(tf.keras.Model):
             new_height = int(round(new_width / width * height / 32) * 32)
         return cv2.resize(image, (new_width, new_height))
 
-    @st.cache_data(show_spinner=False)
     def predict_one_page(_self, raw_image):
         image = _self.resize_image_short_side(raw_image).astype(float) / 255.0
         binarize_map = _self.model(tf.expand_dims(image, 0), training=False)[0]

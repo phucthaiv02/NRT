@@ -160,4 +160,4 @@ with gr.Blocks() as iface:
 
 if __name__ == "__main__":
     load_all_model()
-    iface.launch()
+    iface.launch(share=True)
